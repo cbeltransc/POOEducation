@@ -21,61 +21,64 @@ public class Ejercicio5 {
     
     Scanner teclado= new Scanner(System.in);
     City bogota = new City();
-    Robot karel = new Robot(bogota, 0, 0, Direction.EAST,0);
+    Robot karel = new Robot(bogota, 0, 0, Direction.NORTH,0);
     System.out.println("Cuantas columnas quiere llenar?");
     int a=teclado.nextInt();
     int j[]=new int [a];
      
     
     for (int m = 0; m < a; m++) {
-       System.out.println("Cuantos objetos hay en la columna "+m+" ?");
+       System.out.println("Cuantos objetos hay en la columna "+(m+1)+" ?");
         j[m]=teclado.nextInt();
         
         } 
-    for (int n = 0; n < a; n++) {
-        for (int m = 0; m < j[n]; m++) {
-        Thing parcel = new Thing(bogota, m,n);     
+    for (int n = 0; n <a; n++) {
+        for (int m = 0; m <j[n]; m++) {
+        Thing parcel = new Thing(bogota, m,n+1);     
             }  
     }
+    for (int n = 0; n <a; n++) {
         karel.turnLeft();
         karel.turnLeft();
         karel.turnLeft();
-        for (int p = 0; p < j[0]; p++) {
+        karel.move();
+        karel.turnLeft();
+        karel.turnLeft();
+        karel.turnLeft();
+        for (int p =0; p <j[n]; p++) {
         karel.pickThing();
         karel.move();
+            }
+        karel.turnLeft();
+        karel.turnLeft();
+        for (int q = 0; q <j[n]; q++) {
+        karel.move();
+            }
         }
-        karel.turnLeft();
-        karel.turnLeft();
-        for (int q = 0; q <j[0]; q++) {
-        karel.move();
-        }
-        for (int b = 1; b < a; b++) {
-        for (int m = 0; m < j[b]; m++) {
-        karel.turnLeft();
-        karel.turnLeft();
-        karel.turnLeft();
-        karel.move();
-        karel.turnLeft();
-        karel.turnLeft();
-        karel.turnLeft();
-        for (int o = 0; o < j[b]; o++) {
-        karel.pickThing();
-        karel.move();
-            }  
-        karel.turnLeft();
-        karel.turnLeft();
-        for (int i = 0; i <j[b]; i++) {
-        karel.move();
-                }
-        
-        
-        }
-        
+    karel.turnLeft();
+    karel.turnLeft();
+    karel.turnLeft();
+    karel.move();
+    karel.turnLeft();
+    karel.turnLeft();
     
+    
+    for (int n = 0; n <=a; n++) {
+        karel.move();
+        karel.turnLeft();
+        for (int p =0; p <j[n]; p++) {
+        karel.putThing();
+        karel.move();
+            }
+        karel.turnLeft();
+        karel.turnLeft();
+        for (int q = 0; q <j[n]; q++) {
+        karel.move();
+            }
+        karel.turnLeft();
         
+        }
+
         
-
-}
-
-     }
-}
+    }
+    }
